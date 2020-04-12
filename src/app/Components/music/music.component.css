@@ -1,0 +1,120 @@
+.btnB{
+    border-color: transparent;
+    background-color: transparent;
+    
+     background-repeat: no-repeat;
+}
+
+.btnB .background-image{
+    min-width: 40px!important;
+      max-height: 40px!important;
+}
+
+.btn-secondary{
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.navbar{
+    background-color: #121212!important;
+}
+
+@media(min-width:529px)
+{
+    .card{
+        max-width: 15rem;
+    }
+    
+}
+.push
+{
+    margin-bottom: 25%!important;
+}
+
+@media(max-width:528px)
+{
+    .card{
+        min-width: 100rem!important;
+     min-width: 100%!important;
+     margin-left: 4.5rem;
+    }
+    .push
+    {
+        margin-bottom: 65%!important;
+    }
+   
+}
+@media(max-width:440px)
+{
+    .card{
+     margin-left: 3rem;
+    }
+   
+}
+
+@media(max-width:400px)
+{
+    .card{
+        
+     margin-left: 2rem;
+    }
+}
+
+@media(max-width:370px)
+{
+    .card{
+     
+     margin-left: 1rem;
+    }
+}
+.modal{
+    border-radius: 15px;
+}
+.modal-header{
+    background-color: #121212;
+    color: white;
+   
+}
+.modal-body{
+    background-color: #282828;
+}
+.modal-footer{
+    background-color: #282828;
+}
+
+.modal-footer .btn-danger{
+    background-color: transparent!important;
+    border-color: white;
+    color: white;
+    border-radius: 25px;
+}
+
+.form-inline .form-control {
+    background-color: #282828!important;
+    border-radius: 25px;
+    color: white!important;
+}
+
+ .x:hover{
+    background-color: #212529;
+}
+
+.hideOverflow{
+    white-space: nowrap!important; 
+    width: 120px!important;
+   overflow: hidden!important;
+   text-overflow: ellipsis!important; 
+}
+
+small{
+    font-weight: 600!important;
+}
+
+    /* a  {
+    opacity: 0!important;
+    }
+
+    img:hover a  {
+        opacity: 1!important;
+    
+    } */

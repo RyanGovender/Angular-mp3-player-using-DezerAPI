@@ -1,0 +1,179 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand">
+        <img class="" src="https://www.pngkey.com/png/full/190-1907978_spotify-logo-png-white-spotify-logo-white-transparent.png" width="160" height="45">
+    </a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input #searchBox  class="form-control mr-sm-2 textb" type="text"  name="searchBox"   (keyup)="searchMusic(searchBox.value)" placeholder="Enter Song or Artist.    ">
+        </form>
+    </div>
+</nav>
+
+
+
+<div class="row push" >
+    <div class="col-md-1"></div>
+    <div class="container mt-5 " style="background-color: #121212!important; opacity:1 ;">
+        <div class="row">
+            <div *ngIf="files.length == 0">
+                <h1 class="text-white mt-5">No results match {{searchBox.value}}.</h1>
+            </div>
+
+           
+             
+     
+        <div *ngFor="let file of files; let i = index">
+            <div class="col-lg-12 mt-3">
+               <div class="card text-white" style="background-color: #282828;">
+                   <img class="card-img-top p-3" src="{{file.album.cover_medium}}" style="max-height: 190px; min-height: 190px!important;background-color: #282828;" alt=""
+                    (click)="getAlbumId(file.album.id);"
+                   data-toggle="modal" data-target=".bd-example-modal-lg"
+                   >
+                   <div class="card-body"  (click)="openFile(file, i)">
+                           <div class="media">
+                               <a class="d-flex" href="#">
+                                   <img style="border-radius: 25px;" src="{{file.artist.picture_small}}" alt="">
+                               </a>
+                               <div class="ml-2 media-body">
+                                   <h6 class="hideOverflow" data-toggle="tooltip" data-placement="bottom" title="{{file.title}}">{{file.title}}</h6>
+                                   {{file.artist.name}}
+                               </div>
+                           </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+
+
+
+<div *ngIf="currentFile != undefined ">
+    <div class="container">
+        <div class="content fixed-bottom " style="background-color: #282828!important;align-content: center!important;">
+        <div class="media-footer text-white">
+             <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col-md-3 mt-4">
+                        <div class="media" *ngIf="currentFile !=undefined">
+                            <a class="d-flex" href="#">
+                                <!-- <img src="{{currentFile.file.album.cover_small}}" alt=""> -->
+                            </a>
+                            <div class="media-body ml-2">
+                                <h5>{{currentFile.file.title}}</h5>
+                               {{currentFile.file.artist.name}}
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-7 mt-1">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <button type="button" class="ml-5 btn btn-secondary " [disabled]="isFirstPlaying()" (click)="previous()">
+                                    <a class="d-flex">
+                                        <img src="https://image.flaticon.com/icons/svg/122/122347.svg" height="40" width="40" alt="">
+                                    </a>
+                                </button>
+                                <button type="button" class="ml-5 btn btn-secondary btnB" *ngIf="!state?.playing"  (click)="play()">
+                                    <a class="d-flex">
+                                        <img src="https://image.flaticon.com/icons/svg/122/122341.svg" height="40" width="40" alt="">
+                                    </a>
+                                </button>
+                                <button type="button" class="ml-5 btn btn-secondary btnB"  (click)="pause()" *ngIf="state?.playing">
+                                    <a class="d-flex">
+                                        <img src="https://image.flaticon.com/icons/svg/122/122344.svg" height="40" width="40" alt="">
+                                    </a>
+                                </button>
+                                <button type="button" class="ml-5 btn btn-secondary "  [disabled]="isLastPlaying()" (click)="next()">
+                                    <a class="d-flex">
+                                        <img src="https://image.flaticon.com/icons/svg/122/122348.svg" height="40" width="40" alt="">
+                                    </a>
+                                </button>
+                                <div class="col-md-2"></div>
+                            </div> 
+                           
+                          {{ state?.readableCurrentTime }} <div class="progress mt-1"style="max-height: 7px!important;">
+                          <div class="progress-bar bg-success "  role="progressbar" [ngStyle]="{width: calculateProgressPercentage(state?.currentTime,state?.duration) + '%'}"   aria-valuenow="calculateProgressPercentage(state?.currentTime,state?.duration)" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                          </div>
+                          <div  class="time-slider" min="0"  step="1"  (input)="onSliderChangeEnd($event)" [disabled]="state?.error || currentFile.index === undefined">
+                            {{ state?.readableDuration }}
+                        </div>
+                    </div>
+                </div>
+             </div>
+            </div>
+        </div>
+      </div>
+</div>
+
+
+<div *ngIf="SelectedAlbum">
+<div class="modal fade bd-example-modal-lg text-white" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{SelectedAlbum.title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="text-white" style="text-align: center;" >
+                        <img src="{{SelectedAlbum.cover_medium}}" >
+                         <h5>{{SelectedAlbum.title}} </h5>
+                         <h6>{{SelectedAlbum.artist.name}}</h6>
+                         <small>{{SelectedAlbum.release_date | date : "y"}} . {{SelectedAlbum.nb_tracks}} SONGS</small>
+                    </div>
+               </div>
+               <div class="col-md-7">
+                  <div *ngFor="let song of SelectedAlbum.tracks.data;let i= index;">
+                    <div class="media x" (click)="openFile(song, index)">
+                        <a class="d-flex" href="#">
+                            <img src="" width="20" height="20" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h6>{{i+1}} . {{song.title}}</h6>
+                           <small>{{song.artist.name}}</small>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>   
