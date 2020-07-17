@@ -27,6 +27,7 @@ export class MusicComponent implements OnInit {
   filesCount=0;
   state: StreamState;
   private _loadFirstItem= false;
+  len = 0;
   
 
   constructor(private musicService:MusicService,private audioService:AudioplayerService,cloudService: CloudServiceService) {
@@ -56,7 +57,8 @@ export class MusicComponent implements OnInit {
      return this.musicService.getAlbumDetails(albumId).subscribe(
         (res:any)=>{
           this.SelectedAlbum = res;
-          this.SelectedAlbum.tracks = res.tracks;
+          //this.SelectedAlbum.tracks = res.tracks;
+          console.log(this.SelectedAlbum.tracks);
         }
      )
   }

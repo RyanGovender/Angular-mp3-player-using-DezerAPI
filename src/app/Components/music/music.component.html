@@ -25,7 +25,7 @@
     <div class="col-md-1"></div>
     <div class="container mt-5 " style="background-color: #121212!important; opacity:1 ;">
         <div class="row">
-            <div *ngIf="files.length == 0">
+            <div *ngIf="filesCount == 0">
                 <h1 class="text-white mt-5">No results match {{searchBox.value}}.</h1>
             </div>
 
@@ -37,8 +37,7 @@
                <div class="card text-white" style="background-color: #282828;">
                    <img class="card-img-top p-3" src="{{file.album.cover_medium}}" style="max-height: 190px; min-height: 190px!important;background-color: #282828;" alt=""
                     (click)="getAlbumId(file.album.id);"
-                   data-toggle="modal" data-target=".bd-example-modal-lg"
-                   >
+                   data-toggle="modal" data-target=".bd-example-modal-lg" >
                    <div class="card-body"  (click)="openFile(file, i)">
                            <div class="media">
                                <a class="d-flex" href="#">
@@ -141,8 +140,11 @@
                          <small>{{SelectedAlbum.release_date | date : "y"}} . {{SelectedAlbum.nb_tracks}} SONGS</small>
                     </div>
                </div>
+               <!-- <div *ngFor="let song of SelectedAlbum.tracks.data">
+                  Hi
+               </div> -->
                <div class="col-md-7">
-                  <div *ngFor="let song of SelectedAlbum.tracks ;let i= index;">
+                  <div *ngFor="let song of SelectedAlbum.tracks.data ;let i= index;">
                     <div class="media x" (click)="openFile(song, i)">
                         <a class="d-flex" href="#">
                             <img src="" width="20" height="20" alt="">
