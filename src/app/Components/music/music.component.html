@@ -109,7 +109,7 @@
                           <div class="progress-bar bg-success "  role="progressbar" [ngStyle]="{width: calculateProgressPercentage(state?.currentTime,state?.duration) + '%'}"   aria-valuenow="calculateProgressPercentage(state?.currentTime,state?.duration)" aria-valuemin="0" aria-valuemax="100">
                             </div>
                           </div>
-                          <div  class="time-slider" min="0"  step="1"  (input)="onSliderChangeEnd($event)" [disabled]="state?.error || currentFile.index === undefined">
+                          <div  class="time-slider" min="0"  step="1"  (input)="onSliderChangeEnd($event)" >
                             {{ state?.readableDuration }}
                         </div>
                     </div>
@@ -142,8 +142,8 @@
                     </div>
                </div>
                <div class="col-md-7">
-                  <div *ngFor="let song of SelectedAlbum.tracks.data;let i= index;">
-                    <div class="media x" (click)="openFile(song, index)">
+                  <div *ngFor="let song of SelectedAlbum.tracks ;let i= index;">
+                    <div class="media x" (click)="openFile(song, i)">
                         <a class="d-flex" href="#">
                             <img src="" width="20" height="20" alt="">
                         </a>

@@ -1,4 +1,5 @@
 import { ITrack } from './ITrack';
+import { IArtist } from './IArtist';
 
 export interface IAlbum{
     id: number;
@@ -16,4 +17,5 @@ export interface IAlbum{
     rating: string;
     release_date: string;
     tracks:ITrack[];
+    artist:IArtist;
 }

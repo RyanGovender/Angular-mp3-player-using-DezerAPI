@@ -8,4 +8,5 @@ export interface ITrack{
     track_position: string;
     preview: string;
     artist:IArtist;
+    data:any;
 }
