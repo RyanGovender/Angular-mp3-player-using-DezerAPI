@@ -19,7 +19,7 @@ export class MusicComponent implements OnInit {
   files:IResult[];
   currentFile: any ={};
   count =0;
-   SelectedAlbum:IAlbum;
+   SelectedAlbum:any;
    searchValue = false;
   private _flag=false;
   tracks:ITrack[];
