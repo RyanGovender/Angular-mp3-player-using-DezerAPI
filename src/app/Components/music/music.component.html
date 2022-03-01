@@ -73,8 +73,8 @@
                                 <!-- <img src="{{currentFile.file.album.cover_small}}" alt=""> -->
                             </a>
                             <div class="media-body ml-2">
-                                <h5>{{currentFile.file.title}}</h5>
-                               {{currentFile.file.artist.name}}
+                                <h5>{{currentFile?.file?.title}}</h5>
+                               {{currentFile.file?.artist?.name}}
                             </div>
                         </div>
                     </div> 
@@ -83,22 +83,22 @@
                                 <div class="col-md-3"></div>
                                 <button type="button" class="ml-5 btn btn-secondary " [disabled]="isFirstPlaying()" (click)="previous()">
                                     <a class="d-flex">
-                                        <img src="https://image.flaticon.com/icons/svg/122/122347.svg" height="40" width="40" alt="">
+                                        <img src="https://cdn-icons.flaticon.com/png/512/126/premium/126527.png?token=exp=1646163429~hmac=40df898f345c19774df63161c81cfb32" height="40" width="40" alt="Back">
                                     </a>
                                 </button>
                                 <button type="button" class="ml-5 btn btn-secondary btnB" *ngIf="!state?.playing"  (click)="play()">
                                     <a class="d-flex">
-                                        <img src="https://image.flaticon.com/icons/svg/122/122341.svg" height="40" width="40" alt="">
+                                        <img src="https://cdn-icons.flaticon.com/png/512/126/premium/126583.png?token=exp=1646163830~hmac=8b760253e8f67ae9a4b0e28ffa31ab4a" height="40" width="40" alt="">
                                     </a>
                                 </button>
                                 <button type="button" class="ml-5 btn btn-secondary btnB"  (click)="pause()" *ngIf="state?.playing">
                                     <a class="d-flex">
-                                        <img src="https://image.flaticon.com/icons/svg/122/122344.svg" height="40" width="40" alt="">
+                                        <img src="https://cdn-icons.flaticon.com/png/512/3759/premium/3759352.png?token=exp=1646163247~hmac=8693c8f8474f970a452430f0674b029d" height="40" width="40" alt="">
                                     </a>
                                 </button>
                                 <button type="button" class="ml-5 btn btn-secondary "  [disabled]="isLastPlaying()" (click)="next()">
                                     <a class="d-flex">
-                                        <img src="https://image.flaticon.com/icons/svg/122/122348.svg" height="40" width="40" alt="">
+                                        <img src="https://cdn-icons.flaticon.com/png/512/126/premium/126526.png?token=exp=1646163913~hmac=2c8129eac428ee9cd079f15cf1be0dab" height="40" width="40" alt="">
                                     </a>
                                 </button>
                                 <div class="col-md-2"></div>
@@ -147,7 +147,7 @@
                   <div *ngFor="let song of SelectedAlbum.tracks.data ;let i= index;">
                     <div class="media x" (click)="openFile(song, i)">
                         <a class="d-flex" href="#">
-                            <img src="" width="20" height="20" alt="">
+                            <img class="text-white" src="https://cdn-icons-png.flaticon.com/512/626/626053.png" width="20" height="20" alt="">
                         </a>
                         <div class="media-body">
                             <h6>{{i+1}} . {{song.title}}</h6>

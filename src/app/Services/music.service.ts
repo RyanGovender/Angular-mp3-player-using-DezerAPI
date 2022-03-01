@@ -8,8 +8,10 @@ import { IAlbum } from '../Models/IAlbum';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MusicService {
 
+  //https://cors-anywhere.herokuapp.com/
   private  _url = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/';
 
   constructor(private _http:HttpClient) { }

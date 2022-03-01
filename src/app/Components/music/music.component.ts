@@ -145,7 +145,7 @@ export class MusicComponent implements OnInit {
 
   isLastPlaying() {
     if(this.currentFile!=undefined )
-    return this.currentFile.index === this.files.length - 1;
+    return this.currentFile?.index === this.files?.length - 1;
   }
 
   onSliderChangeEnd(change) {
